@@ -9,8 +9,27 @@ plugins {
 
 mainClassName = 'org.jid.pruebas.subprojects.subproject2.MainSubproject2'
 
-jar {
-    manifest {
-        attributes 'Main-Class': mainClassName
-    }
+def myManifest = {
+    attributes 'Main-Class': mainClassName
+    attributes 'Implementation-Version': version
 }
+
+jar {
+    manifest myManifest
+}
+
+
+task uberJar(type: Jar) {
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
+    manifest myManifest
+}
+
+
