@@ -1,0 +1,13 @@
+// myLibrary1 build.gradle
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'java-library-distribution'
+    id 'jacoco'
+    id 'org.sonarqube' version '2.6.2'
+}
+
+
+
+

@@ -1,0 +1,16 @@
+// my subproject2 build.gradle
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'jacoco'
+    id 'org.sonarqube' version '2.6.2'
+}
+
+mainClassName = 'org.jid.pruebas.subprojects.subproject2.MainSubproject2'
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
