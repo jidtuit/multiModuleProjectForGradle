@@ -1,0 +1,10 @@
+// myLibrary1 build.gradle
+
+plugins {
+    id 'java-library'
+    id 'java-library-distribution'
+}
+
+
+
+

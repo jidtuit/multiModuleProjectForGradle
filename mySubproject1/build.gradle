@@ -1,0 +1,41 @@
+// my subproject1 build.gradle
+
+plugins {
+    id 'application'
+}
+
+mainClassName = 'org.jid.pruebas.subprojects.subproject1.MainSubproject1'
+
+dependencies {
+    implementation project(':myLibrary1')
+
+    // Global dependencies can be overriden
+    // testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+
+}
+
+
+def myManifest = {
+    attributes 'Main-Class': mainClassName
+    attributes 'Implementation-Version': version
+}
+
+jar {
+    manifest myManifest
+}
+
+
+task uberJar(type: Jar) {
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
+    manifest myManifest
+}
+
+
