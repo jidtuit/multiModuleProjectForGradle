@@ -1,16 +1,38 @@
 // root build.gradle
 
-subprojects {
-    version = '0.0.1-SNAPSHOT'
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'org.sonarqube' version '2.6.2'
 }
 
 
-allprojects {
+subprojects {
+    version = '0.0.1-SNAPSHOT'
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     repositories {
         mavenCentral()
         jcenter()
     }
+
+    jacocoTestReport {
+        dependsOn 'test'
+    }
+
+
+    task sonarqube() {
+        dependsOn.clear()
+        dependsOn jacocoTestReport
+    }
+
+
+}
+
+
+allprojects {
 
     task hello {
         doLast { task ->
