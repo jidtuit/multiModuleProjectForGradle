@@ -8,22 +8,59 @@ plugins {
 
 
 subprojects {
+    apply plugin: 'java'
+
     version = '0.0.1-SNAPSHOT'
 
     sourceCompatibility = 11
     targetCompatibility = 11
+
+    ext {
+        lmaxDisruptorVersion = '3.4.2'
+        log4j2Version = '2.8.2'
+        slf4jVersion = '1.7.21'
+        junitPlatformVersion = '1.1.1'
+        junitJupiterVersion = '5.1.1'
+    }
 
     repositories {
         mavenCentral()
         jcenter()
     }
 
+    dependencies {
+
+        // Logs
+        implementation("com.lmax:disruptor:${lmaxDisruptorVersion}")
+        implementation("org.slf4j:slf4j-api:${slf4jVersion}")
+        implementation("org.apache.logging.log4j:log4j-api:${log4j2Version}")
+        implementation("org.apache.logging.log4j:log4j-core:${log4j2Version}")
+        implementation("org.apache.logging.log4j:log4j-slf4j-impl:${log4j2Version}")
+
+
+        // JUnit Jupiter API and TestEngine implementation
+        testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+        testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+
+        testRuntime("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}") {
+            because 'allows tests to run from IDEs that bundle older version of launcher'
+        }
+    }
+
+    test {
+        useJUnitPlatform {
+            includeEngines 'junit-jupiter'
+            excludeTags 'slow'
+        }
+    }
+
+
     jacocoTestReport {
         dependsOn 'test'
     }
 
 
-    task sonarqube() {
+    task sonarqube {
         dependsOn.clear()
         dependsOn jacocoTestReport
     }
