@@ -64,8 +64,6 @@ subprojects {
         dependsOn.clear()
         dependsOn jacocoTestReport
     }
-
-
 }
 
 

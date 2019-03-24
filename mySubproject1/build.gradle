@@ -9,12 +9,11 @@ mainClassName = 'org.jid.pruebas.subprojects.subproject1.MainSubproject1'
 dependencies {
     implementation project(':myLibrary1')
 
-}
-
-dependencies {
     // Global dependencies can be overriden
     // testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+
 }
+
 
 def myManifest = {
     attributes 'Main-Class': mainClassName
