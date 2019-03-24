@@ -12,6 +12,9 @@ dependencies {
     // Global dependencies can be overriden
     // testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
 
+    // There is visibility if the global vars in local
+    //print "JID: ${junitJupiterVersion}"
+
 }
 
 

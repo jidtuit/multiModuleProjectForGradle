@@ -54,16 +54,14 @@ subprojects {
         }
     }
 
-
     jacocoTestReport {
-        dependsOn 'test'
+        dependsOn test
     }
-
 
     task sonarqube {
-        dependsOn.clear()
         dependsOn jacocoTestReport
     }
+
 }
 
 
