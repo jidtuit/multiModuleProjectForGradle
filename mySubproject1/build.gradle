@@ -11,6 +11,10 @@ dependencies {
 
 }
 
+dependencies {
+    // Global dependencies can be overriden
+    // testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+}
 
 def myManifest = {
     attributes 'Main-Class': mainClassName

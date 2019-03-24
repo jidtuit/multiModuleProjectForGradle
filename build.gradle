@@ -19,8 +19,8 @@ subprojects {
         lmaxDisruptorVersion = '3.4.2'
         log4j2Version = '2.8.2'
         slf4jVersion = '1.7.21'
-        junitPlatformVersion = '1.1.1'
-        junitJupiterVersion = '5.1.1'
+        junitPlatformVersion = '1.4.1'
+        junitJupiterVersion = '5.4.1'
     }
 
     repositories {
